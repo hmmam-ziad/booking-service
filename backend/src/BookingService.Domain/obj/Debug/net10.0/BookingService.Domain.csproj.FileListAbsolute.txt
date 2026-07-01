@@ -1,0 +1,12 @@
+C:\Home Task\booking-service\backend\src\BookingService.Domain\bin\Debug\net10.0\BookingService.Domain.deps.json
+C:\Home Task\booking-service\backend\src\BookingService.Domain\bin\Debug\net10.0\BookingService.Domain.dll
+C:\Home Task\booking-service\backend\src\BookingService.Domain\bin\Debug\net10.0\BookingService.Domain.pdb
+C:\Home Task\booking-service\backend\src\BookingService.Domain\obj\Debug\net10.0\BookingService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Home Task\booking-service\backend\src\BookingService.Domain\obj\Debug\net10.0\BookingService.Domain.AssemblyInfoInputs.cache
+C:\Home Task\booking-service\backend\src\BookingService.Domain\obj\Debug\net10.0\BookingService.Domain.AssemblyInfo.cs
+C:\Home Task\booking-service\backend\src\BookingService.Domain\obj\Debug\net10.0\BookingService.Domain.csproj.CoreCompileInputs.cache
+C:\Home Task\booking-service\backend\src\BookingService.Domain\obj\Debug\net10.0\BookingService.Domain.sourcelink.json
+C:\Home Task\booking-service\backend\src\BookingService.Domain\obj\Debug\net10.0\BookingService.Domain.dll
+C:\Home Task\booking-service\backend\src\BookingService.Domain\obj\Debug\net10.0\refint\BookingService.Domain.dll
+C:\Home Task\booking-service\backend\src\BookingService.Domain\obj\Debug\net10.0\BookingService.Domain.pdb
+C:\Home Task\booking-service\backend\src\BookingService.Domain\obj\Debug\net10.0\ref\BookingService.Domain.dll

@@ -1,0 +1,16 @@
+C:\Home Task\booking-service\backend\src\BookingService.Application\bin\Debug\net10.0\BookingService.Application.deps.json
+C:\Home Task\booking-service\backend\src\BookingService.Application\bin\Debug\net10.0\BookingService.Application.dll
+C:\Home Task\booking-service\backend\src\BookingService.Application\bin\Debug\net10.0\BookingService.Application.pdb
+C:\Home Task\booking-service\backend\src\BookingService.Application\bin\Debug\net10.0\BookingService.Domain.dll
+C:\Home Task\booking-service\backend\src\BookingService.Application\bin\Debug\net10.0\BookingService.Domain.pdb
+C:\Home Task\booking-service\backend\src\BookingService.Application\obj\Debug\net10.0\BookingService.Application.csproj.AssemblyReference.cache
+C:\Home Task\booking-service\backend\src\BookingService.Application\obj\Debug\net10.0\BookingService.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Home Task\booking-service\backend\src\BookingService.Application\obj\Debug\net10.0\BookingService.Application.AssemblyInfoInputs.cache
+C:\Home Task\booking-service\backend\src\BookingService.Application\obj\Debug\net10.0\BookingService.Application.AssemblyInfo.cs
+C:\Home Task\booking-service\backend\src\BookingService.Application\obj\Debug\net10.0\BookingService.Application.csproj.CoreCompileInputs.cache
+C:\Home Task\booking-service\backend\src\BookingService.Application\obj\Debug\net10.0\BookingService.Application.sourcelink.json
+C:\Home Task\booking-service\backend\src\BookingService.Application\obj\Debug\net10.0\BookingS.9C323D69.Up2Date
+C:\Home Task\booking-service\backend\src\BookingService.Application\obj\Debug\net10.0\BookingService.Application.dll
+C:\Home Task\booking-service\backend\src\BookingService.Application\obj\Debug\net10.0\refint\BookingService.Application.dll
+C:\Home Task\booking-service\backend\src\BookingService.Application\obj\Debug\net10.0\BookingService.Application.pdb
+C:\Home Task\booking-service\backend\src\BookingService.Application\obj\Debug\net10.0\ref\BookingService.Application.dll
