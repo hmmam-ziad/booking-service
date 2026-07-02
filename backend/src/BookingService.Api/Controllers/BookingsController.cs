@@ -20,7 +20,7 @@ namespace BookingService.Api.Controllers
         /// <summary>
         /// Gets a single booking by id.
         /// </summary>
-        [HttpGet("{id:string}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(typeof(BookingResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<BookingResponse>> GetById(string id, CancellationToken ct)
@@ -67,7 +67,7 @@ namespace BookingService.Api.Controllers
         /// <summary>
         /// Cancels a booking (soft delete).
         /// </summary>
-        [HttpDelete("{id:guid}")]
+        [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Cancel(string id, CancellationToken ct)

@@ -35,7 +35,7 @@ namespace BookingService.Api.Extensions
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
-                    policy.WithOrigins("http://localhost:3000")
+                    policy.WithOrigins("http://localhost:3000", "https://localhost:3000")
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });
