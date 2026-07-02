@@ -11,7 +11,7 @@ namespace BookingService.Application.DTOs
         string UserId,
         DateTime StartDateTime,
         DateTime EndDateTime,
-        BookingStatus Status,
+        string Status,
         DateTime CreatedAt,
         DateTime? CancelledAt
     );

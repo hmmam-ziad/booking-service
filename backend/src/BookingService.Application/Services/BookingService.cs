@@ -79,7 +79,7 @@ namespace BookingService.Application.Services
 
         private static BookingResponse ToResponse(Booking b) => new(
         b.Id, b.ResourceId, b.UserId, b.StartDateTime, b.EndDateTime,
-        b.Status, b.CreatedAt, b.CancelledAt);
+        b.Status.ToString(), b.CreatedAt, b.CancelledAt);
 
         public async Task<BookingResponse> GetByIdAsync(string id, CancellationToken ct = default)
         {
