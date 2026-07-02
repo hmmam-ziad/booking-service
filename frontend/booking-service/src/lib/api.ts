@@ -26,7 +26,7 @@ async function handleResponse<T>(response: Response): Promise<T> {
 
 // Create a new booking.
 export async function createBooking(payload: ICreateBookingRequest): Promise<IBookingResponse> {
-    const res = await fetch(`${APIUrl}/bookings`, {
+    const res = await fetch(`${APIUrl}/Bookings`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
