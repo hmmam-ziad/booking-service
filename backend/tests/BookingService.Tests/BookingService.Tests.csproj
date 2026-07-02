@@ -21,10 +21,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\BookingService.Application\BookingService.Application.csproj" />
     <ProjectReference Include="..\..\src\BookingService.Infrastructure\BookingService.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\BookingService.Domain\BookingService.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\" />
     <Folder Include="Application\" />
     <Folder Include="TestHelpers\" />
   </ItemGroup>
