@@ -20,7 +20,7 @@ namespace BookingService.Api.Controllers
         /// <summary>
         /// Gets a single booking by id.
         /// </summary>
-        [HttpGet("{id:guid}")]
+        [HttpGet("{id:string}")]
         [ProducesResponseType(typeof(BookingResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<BookingResponse>> GetById(string id, CancellationToken ct)
