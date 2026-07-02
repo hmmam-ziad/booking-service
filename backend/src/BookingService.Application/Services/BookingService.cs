@@ -64,5 +64,13 @@ namespace BookingService.Application.Services
         private static BookingResponse ToResponse(Booking b) => new(
         b.Id, b.ResourceId, b.UserId, b.StartDateTime, b.EndDateTime,
         b.Status, b.CreatedAt, b.CancelledAt);
+
+        public async Task<BookingResponse> GetByIdAsync(string id, CancellationToken ct = default)
+        {
+            var booking = await _repository.GetByIdAsync(id, ct)
+                ?? throw new KeyNotFoundException($"Booking '{id}' was not found.");
+
+            return ToResponse(booking);
+        }
     }
 }
