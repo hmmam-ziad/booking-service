@@ -12,10 +12,12 @@ namespace BookingService.Application.Services
     public class BookingService : IBookingService
     {
         private readonly IBookingRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public BookingService(IBookingRepository repository)
+        public BookingService(IBookingRepository repository, IUnitOfWork unitOfWork)
         {
             _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task CancelAsync(string id, CancellationToken ct = default)
@@ -29,24 +31,38 @@ namespace BookingService.Application.Services
 
         public async Task<BookingResponse> CreateAsync(CreateBookingRequest request, CancellationToken ct = default)
         {
+            // Validate the request before starting a database transaction.
             var booking = Booking.Create(
                 request.ResourceId,
                 request.UserId,
                 request.StartDateTime,
                 request.EndDateTime);
 
-            var overlaps = await _repository.HasOverlapAsync(
-                booking.ResourceId,
-                booking.StartDateTime,
-                booking.EndDateTime,
-                ct);
+            await _unitOfWork.BeginTransactionAsync(ct);
 
-            if (overlaps)
-                throw new BookingOverlapException(booking.ResourceId);
-            await _repository.AddAsync(booking, ct);
-            await _repository.SaveChangesAsync(ct);
+            try
+            {
+                // Prevents concurrent create operations for the same resource.
+                // Operations on different resources can still run in parallel.
+                await _repository.AcquireResourceLockAsync(booking.ResourceId, ct);
 
-            return ToResponse(booking);
+                var overlaps = await _repository.HasOverlapAsync(
+                    booking.ResourceId, booking.StartDateTime, booking.EndDateTime, ct);
+
+                if (overlaps)
+                    throw new BookingOverlapException(booking.ResourceId);
+
+                await _repository.AddAsync(booking, ct);
+                await _repository.SaveChangesAsync(ct);
+
+                await _unitOfWork.CommitTransactionAsync(ct);
+                return ToResponse(booking);
+            }
+            catch
+            {
+                await _unitOfWork.RollbackTransactionAsync(ct);
+                throw;
+            }
         }
 
         public async Task<PagedResult<BookingResponse>> GetByResourceAsync(GetBookingsQuery query, CancellationToken ct = default)

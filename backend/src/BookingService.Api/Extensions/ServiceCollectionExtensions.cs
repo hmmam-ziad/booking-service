@@ -21,6 +21,7 @@ namespace BookingService.Api.Extensions
             // I used `BookingService.Application.Services.BookingService` because the project name matches the class name.
             // u can change the class name to `BookingManagmentService` or something else if you want to avoid confusion.
             services.AddScoped<IBookingService, BookingService.Application.Services.BookingService>();
+            services.AddScoped<IUnitOfWork, EfUnitOfWork>();
 
             return services;
         }

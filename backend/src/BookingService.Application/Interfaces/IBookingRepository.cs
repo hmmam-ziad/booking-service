@@ -14,5 +14,11 @@ namespace BookingService.Application.Interfaces
         Task<(IReadOnlyList<Booking> Items, int TotalCount)> GetByResourceAsync(string resourceId, DateTime? from, DateTime? to, int page, int pageSize, CancellationToken ct = default);
         Task AddAsync(Booking booking, CancellationToken ct = default);
         Task SaveChangesAsync(CancellationToken ct = default);
+        /// <summary>
+        /// Acquires an exclusive lock for the specified resource.
+        /// This method must be called within an active transaction.
+        /// The lock is released when the transaction is committed or rolled back.
+        /// </summary>
+        Task AcquireResourceLockAsync(string resourceId, CancellationToken ct = default);
     }
 }

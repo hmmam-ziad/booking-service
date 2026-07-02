@@ -16,12 +16,14 @@ namespace BookingService.Tests.Application
         private static readonly DateTime End = new(2026, 7, 10, 11, 0, 0, DateTimeKind.Utc);
 
         private readonly Mock<IBookingRepository> _repositoryMock;
+        private readonly Mock<IUnitOfWork> _unitOfWorkMock;
         private readonly ApplicationBookingService _sut; // "system under test"
 
         public BookingServiceTests()
         {
             _repositoryMock = new Mock<IBookingRepository>();
-            _sut = new ApplicationBookingService(_repositoryMock.Object);
+            _unitOfWorkMock = new Mock<IUnitOfWork>();
+            _sut = new ApplicationBookingService(_repositoryMock.Object, _unitOfWorkMock.Object);
         }
 
         [Fact]

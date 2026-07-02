@@ -2,9 +2,12 @@
 using BookingService.Domain.Entities;
 using BookingService.Domain.Enums;
 using BookingService.Infrastructure.Persistence;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace BookingService.Infrastructure.Repositories
@@ -17,6 +20,7 @@ namespace BookingService.Infrastructure.Repositories
         {
             _context = context;
         }
+
         public async Task AddAsync(Booking booking, CancellationToken ct = default)
         {
             await _context.Bookings.AddAsync(booking, ct);
@@ -63,6 +67,42 @@ namespace BookingService.Infrastructure.Repositories
         public Task SaveChangesAsync(CancellationToken ct = default)
         {
             return _context.SaveChangesAsync(ct);
+        }
+
+
+
+        public async Task AcquireResourceLockAsync(string resourceId, CancellationToken ct = default)
+        {
+            var connection = _context.Database.GetDbConnection();
+
+            if (connection.State != ConnectionState.Open)
+                await connection.OpenAsync(ct);
+
+            await using var command = connection.CreateCommand();
+            command.CommandText = "sp_getapplock";
+            command.CommandType = CommandType.StoredProcedure;
+            command.Transaction = _context.Database.CurrentTransaction?.GetDbTransaction();
+            command.Parameters.Add(new SqlParameter("@Resource", $"booking-resource:{resourceId}"));
+            command.Parameters.Add(new SqlParameter("@LockMode", "Exclusive"));
+            command.Parameters.Add(new SqlParameter("@LockOwner", "Transaction")); // auto-released on commit/rollback
+            command.Parameters.Add(new SqlParameter("@LockTimeout", 10000)); // 10s max wait
+
+            var returnValue = new SqlParameter
+            {
+                ParameterName = "@ReturnValue",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.ReturnValue
+            };
+            command.Parameters.Add(returnValue);
+
+            await command.ExecuteNonQueryAsync(ct);
+
+            var result = (int)returnValue.Value;
+            if (result < 0)
+            {
+                throw new InvalidOperationException(
+                    $"Could not acquire lock for resource '{resourceId}' (sp_getapplock returned {result}).");
+            }
         }
     }
 }
