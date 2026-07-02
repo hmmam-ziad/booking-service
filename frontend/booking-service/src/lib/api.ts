@@ -1,5 +1,8 @@
 import { IBookingResponse, ICreateBookingRequest, IPagedResult } from "./types";
 
+// dev-only
+if(process.env.NODE_ENV === "development")
+            process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const APIUrl = process.env.NEXT_PUBLIC_API_URL;
 
 // Custom error class for API client errors.
@@ -50,7 +53,7 @@ export async function getBookingsByResource(resourceId: string, opt?: {
     if(opt?.page) params.set("page", opt.page.toString());
     if(opt?.pageSize) params.set("pageSize", opt.pageSize.toString());
 
-    const res = await fetch(`${APIUrl}/bookings?${params.toString()}`, {
+    const res = await fetch(`${APIUrl}/Bookings?${params.toString()}`, {
         cache: "no-store"
     });
 
@@ -59,7 +62,7 @@ export async function getBookingsByResource(resourceId: string, opt?: {
 
 // Cancel an existing booking.
 export async function cancelBooking(id: string): Promise<void> {
-    const res = await fetch(`${APIUrl}/bookings/${id}`, {
+    const res = await fetch(`${APIUrl}/Bookings/${id}`, {
         method: "DELETE"
     });
     return handleResponse<void>(res);
