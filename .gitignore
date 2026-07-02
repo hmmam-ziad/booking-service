@@ -1,0 +1,4 @@
+.vs/
+# u can add appsettings.json to the .gitignore file if you want to ignore it
+bin/
+obj/
